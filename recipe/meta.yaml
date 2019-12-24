@@ -1,8 +1,8 @@
 {% set name = "r-partitions" %}
-{% set version = "1.9-19" %}
+{% set version = "1.9-22" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
-{% set sha256 = "dd47a511313ca26392bbe42d896cb96323d83ede8de1f92d622401d6a47574de" %}
+{% set sha256 = "da020f447e669f273207fdc0f56dde90ca7082cc5f89531ec0c473245c231ee3" %}
 
 package:
   name: {{ name|lower }}
@@ -32,11 +32,11 @@ requirements:
     - {{posix}}coreutils         # [win]
     - {{posix}}zip               # [win]
   host:
-    - r-base
+    - r-base >=3.6.0
     - r-gmp
     - r-polynom
   run:
-    - r-base
+    - r-base >=3.6.0
     - {{native}}gcc-libs         # [win]
     - r-gmp
     - r-polynom
