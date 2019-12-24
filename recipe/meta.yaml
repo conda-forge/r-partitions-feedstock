@@ -1,18 +1,16 @@
-{% set name = "r-partitions" %}
-{% set version = "1.9-22" %}
+{% set version = '1.9-22' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
-{% set sha256 = "da020f447e669f273207fdc0f56dde90ca7082cc5f89531ec0c473245c231ee3" %}
 
 package:
-  name: {{ name|lower }}
+  name: r-partitions
   version: {{ version|replace("-", "_") }}
 
 source:
   url:
     - {{ cran_mirror }}/src/contrib/partitions_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/partitions/partitions_{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  sha256: da020f447e669f273207fdc0f56dde90ca7082cc5f89531ec0c473245c231ee3
 
 build:
   merge_build_host: True  # [win]
@@ -23,25 +21,26 @@ build:
 
 requirements:
   build:
-    - {{ compiler('c') }}        # [not win]
-    - {{ compiler('cxx') }}      # [not win]
-    - {{native}}toolchain        # [win]
+    - {{ compiler('c') }}              # [not win]
+    - {{ compiler('m2w64_c') }}        # [win]
+    - {{ compiler('cxx') }}            # [not win]
+    - {{ compiler('m2w64_cxx') }}      # [win]
     - {{posix}}filesystem        # [win]
     - {{posix}}make
     - {{posix}}sed               # [win]
     - {{posix}}coreutils         # [win]
     - {{posix}}zip               # [win]
   host:
-    - r-base >=3.6.0
-    - r-sets
+    - r-base
     - r-gmp
     - r-polynom
-  run:
-    - r-base >=3.6.0
     - r-sets
+  run:
+    - r-base
     - {{native}}gcc-libs         # [win]
     - r-gmp
     - r-polynom
+    - r-sets
 
 test:
   commands:
@@ -49,13 +48,34 @@ test:
     - "\"%R%\" -e \"library('partitions')\""  # [win]
 
 about:
-  home: https://CRAN.R-project.org/package=partitions
-  license: GPL
-  summary: Additive partitions of integers.
-  license_family: GPL
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'
+  home: https://github.com/RobinHankin/partitions.git
+  license: GPL-3
+  summary: Additive partitions of integers.  Enumerates the partitions, unequal partitions, and
+    restricted partitions of an integer; the three corresponding partition functions
+    are also given.  Set partitions are now included.
+  license_family: GPL3
+  license_file:
+    - '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'
 
 extra:
   recipe-maintainers:
     - conda-forge/r
-    - npavlovikj
+
+# Package: partitions
+# Type: Package
+# Title: Additive Partitions of Integers
+# Version: 1.9-22
+# Depends: R (>= 3.6.0)
+# Authors@R: person(given=c("Robin", "K. S."), family="Hankin", role = c("aut","cre"), email="hankin.robin@gmail.com", comment = c(ORCID = "0000-0001-5982-0415"))
+# Maintainer: Robin K. S. Hankin <hankin.robin@gmail.com>
+# Imports: gmp, polynom, sets
+# Description: Additive partitions of integers.  Enumerates the partitions, unequal partitions, and restricted partitions of an integer; the three corresponding partition functions are also given.  Set partitions are now included.
+# Suggests: spray,testthat
+# License: GPL
+# URL: https://github.com/RobinHankin/partitions.git
+# BugReports: https://github.com/RobinHankin/partitions/issues
+# NeedsCompilation: yes
+# Packaged: 2019-10-19 21:13:18 UTC; rhankin
+# Author: Robin K. S. Hankin [aut, cre] (<https://orcid.org/0000-0001-5982-0415>)
+# Repository: CRAN
+# Date/Publication: 2019-10-21 05:10:02 UTC
