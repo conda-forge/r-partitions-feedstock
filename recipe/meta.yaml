@@ -60,6 +60,7 @@ about:
 extra:
   recipe-maintainers:
     - conda-forge/r
+    - npavlovikj
 
 # Package: partitions
 # Type: Package
