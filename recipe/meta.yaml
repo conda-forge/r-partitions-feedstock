@@ -31,12 +31,12 @@ requirements:
     - {{posix}}coreutils         # [win]
     - {{posix}}zip               # [win]
   host:
-    - r-base
+    - r-base >=3.6
     - r-gmp
     - r-polynom
     - r-sets
   run:
-    - r-base
+    - r-base >=3.6
     - {{native}}gcc-libs         # [win]
     - r-gmp
     - r-polynom
