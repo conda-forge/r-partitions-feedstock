@@ -33,10 +33,12 @@ requirements:
     - {{posix}}zip               # [win]
   host:
     - r-base >=3.6.0
+    - r-sets
     - r-gmp
     - r-polynom
   run:
     - r-base >=3.6.0
+    - r-sets
     - {{native}}gcc-libs         # [win]
     - r-gmp
     - r-polynom
