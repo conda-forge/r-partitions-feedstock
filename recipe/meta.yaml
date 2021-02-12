@@ -1,8 +1,8 @@
 {% set name = "r-partitions" %}
-{% set version = "1.9-19" %}
+{% set version = "1.10-1" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
-{% set sha256 = "dd47a511313ca26392bbe42d896cb96323d83ede8de1f92d622401d6a47574de" %}
+{% set sha256 = "7f81ebc99418c4f158b01e66b5f9f16be8cace635952be309d092664700d8c2d" %}
 
 package:
   name: {{ name|lower }}
@@ -15,8 +15,8 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  merge_build_host: True  # [win]
-  number: 2
+  merge_build_host: true  # [win]
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
@@ -52,7 +52,7 @@ about:
   license: GPL-3.0
   summary: Additive partitions of integers.
   license_family: GPL
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'
+  license_file: {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
 
 extra:
   recipe-maintainers:
