@@ -1,32 +1,30 @@
-{% set name = "r-partitions" %}
-{% set version = "1.9-19" %}
+{% set version = '1.10-1' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
-{% set sha256 = "dd47a511313ca26392bbe42d896cb96323d83ede8de1f92d622401d6a47574de" %}
 
 package:
-  name: {{ name|lower }}
+  name: r-partitions
   version: {{ version|replace("-", "_") }}
 
 source:
   url:
     - {{ cran_mirror }}/src/contrib/partitions_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/partitions/partitions_{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  sha256: 7f81ebc99418c4f158b01e66b5f9f16be8cace635952be309d092664700d8c2d
 
 build:
-  merge_build_host: True  # [win]
-  number: 2
+  merge_build_host: true  # [win]
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
-    - {{ compiler('c') }}          # [not win]
-    - {{ compiler('cxx') }}        # [not win]
-    - {{ compiler('m2w64_c') }}    # [win]
-    - {{ compiler('m2w64_cxx') }}  # [win]
+    - {{ compiler('c') }}              # [not win]
+    - {{ compiler('m2w64_c') }}        # [win]
+    - {{ compiler('cxx') }}            # [not win]
+    - {{ compiler('m2w64_cxx') }}      # [win]
     - {{ posix }}filesystem        # [win]
     - {{ posix }}make
     - {{ posix }}sed               # [win]
@@ -34,13 +32,19 @@ requirements:
     - {{ posix }}zip               # [win]
   host:
     - r-base
+    - r-eddington
     - r-gmp
+    - r-mathjaxr
     - r-polynom
+    - r-sets
   run:
     - r-base
     - {{ native }}gcc-libs         # [win]
+    - r-eddington
     - r-gmp
+    - r-mathjaxr
     - r-polynom
+    - r-sets
 
 test:
   commands:
@@ -49,10 +53,11 @@ test:
 
 about:
   home: https://CRAN.R-project.org/package=partitions
-  license: GPL-3.0
+  license: GPL-2.0-or-later
   summary: Additive partitions of integers.
   license_family: GPL
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'
+  license_file:
+    - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
 
 extra:
   recipe-maintainers:
