@@ -1,4 +1,4 @@
-{% set version = '1.10-1' %}
+{% set version = "1.10-2" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,7 +10,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/partitions_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/partitions/partitions_{{ version }}.tar.gz
-  sha256: 7f81ebc99418c4f158b01e66b5f9f16be8cace635952be309d092664700d8c2d
+  sha256: e6bdc5fbad604a8217b7708dc38e09fae1ffd3bf22e311f3f12662aa0c6d93ad
 
 build:
   merge_build_host: true  # [win]
