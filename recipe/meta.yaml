@@ -30,9 +30,10 @@ requirements:
     - {{ posix }}sed               # [win]
     - {{ posix }}coreutils         # [win]
     - {{ posix }}zip               # [win]
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
   host:
     - r-base
-    - r-eddington
+    - r-rdpack
     - r-gmp
     - r-mathjaxr
     - r-polynom
@@ -40,7 +41,7 @@ requirements:
   run:
     - r-base
     - {{ native }}gcc-libs         # [win]
-    - r-eddington
+    - r-rdpack
     - r-gmp
     - r-mathjaxr
     - r-polynom
