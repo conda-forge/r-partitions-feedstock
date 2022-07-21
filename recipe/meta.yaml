@@ -1,4 +1,4 @@
-{% set version = "1.10-4" %}
+{% set version = "1.10-7" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,7 +10,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/partitions_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/partitions/partitions_{{ version }}.tar.gz
-  sha256: b10091416c3453eb9e9fd46c8cdd35668236579676db43d0267d79e7856467c6
+  sha256: 0bfb8371446f8f9be4595a8a3c50b3530c7d4c83c98be7fc4c23b74379f0b1cf
 
 build:
   merge_build_host: true  # [win]
@@ -30,9 +30,10 @@ requirements:
     - {{ posix }}sed               # [win]
     - {{ posix }}coreutils         # [win]
     - {{ posix }}zip               # [win]
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
   host:
     - r-base
-    - r-eddington
+    - r-rdpack
     - r-gmp
     - r-mathjaxr
     - r-polynom
@@ -40,7 +41,7 @@ requirements:
   run:
     - r-base
     - {{ native }}gcc-libs         # [win]
-    - r-eddington
+    - r-rdpack
     - r-gmp
     - r-mathjaxr
     - r-polynom
