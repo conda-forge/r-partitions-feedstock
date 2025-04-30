@@ -1,4 +1,4 @@
-{% set version = "1.10-7" %}
+{% set version = "1.10-9" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,10 +9,10 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/partitions_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/partitions/partitions_{{ version }}.tar.gz
-  sha256: 0bfb8371446f8f9be4595a8a3c50b3530c7d4c83c98be7fc4c23b74379f0b1cf
+  sha256: 1a2dcded62592508932138d5233b6acd21fdde128dd55c907e07464a42ad1c21
 
 build:
-  number: 3
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
